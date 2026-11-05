@@ -36,6 +36,9 @@ final class TestExecutionService {
     private let locatorSuggester: (@Sendable (String, String) async -> Locator?)?
 
     private let skip: SkipController
+    /// Longest a single case may run before it is stopped and reported (a hung WebDriver call must not freeze the whole run).
+    private let caseBudgetSeconds: Double = 150
+    private var currentStep = ""
 
     init(locatorSuggester: (@Sendable (String, String) async -> Locator?)? = nil, skip: SkipController = SkipController()) {
         self.locatorSuggester = locatorSuggester
@@ -105,8 +108,10 @@ final class TestExecutionService {
                 continue
             }
             do {
-                emit(.caseFinished(try await runCase(planned, appium: appium, config: config, navigator: navigator, path: navigationPath,
-                                                     navigationProblem: navigationProblem, emit: emit)))
+                emit(.caseFinished(try await guarded(planned, appium: appium, config: config, emit: emit) {
+                    try await self.runCase(planned, appium: appium, config: config, navigator: navigator, path: navigationPath,
+                                           navigationProblem: navigationProblem, emit: emit)
+                }))
             } catch let failure as InfrastructureFailure {
                 infrastructureProblem = failure.message
                 emit(.log("Infrastructure problem — remaining cases are Blocked: \(failure.message)", level: .error))
@@ -124,6 +129,55 @@ final class TestExecutionService {
         // Detached so the session is closed even when this task was cancelled.
         await Task.detached { await appium.deleteSession() }.value
         emit(.runFinished(infrastructureProblem: infrastructureProblem))
+    }
+
+    /// Runs one case with a watchdog: the user's Skip button and the time budget both cancel the in-flight WebDriver call,
+    /// so a case that hangs on one step ends (Skipped / Blocked + a screenshot) and the next case starts.
+    private func guarded(_ planned: PlannedCase, appium: AppiumService, config: ExecutionConfig,
+                         emit: @escaping @Sendable (ExecutionEvent) -> Void,
+                         operation: @escaping () async throws -> CaseOutcome) async throws -> CaseOutcome {
+        enum Race { case done(CaseOutcome), skipped, timedOut }
+        let started = Date()
+        let budget = caseBudgetSeconds
+        currentStep = ""
+        let first: Race
+        do {
+            first = try await withThrowingTaskGroup(of: Race.self) { group in
+                group.addTask { .done(try await operation()) }
+                group.addTask { [skip] in
+                    let deadline = Date().addingTimeInterval(budget)
+                    while true {
+                        try await Task.sleep(nanoseconds: 400_000_000)
+                        if skip.isSkipped(planned.id) { return .skipped }
+                        if Date() > deadline { return .timedOut }
+                    }
+                }
+                defer { group.cancelAll() }
+                let result = try await group.next() ?? .skipped
+                group.cancelAll()
+                while true {   // let the cancelled case task finish before leaving the group
+                    do { if try await group.next() == nil { break } } catch { continue }
+                }
+                return result
+            }
+        } catch is CancellationError {
+            throw CancellationError()
+        }
+        switch first {
+        case .done(let outcome): return outcome
+        case .skipped:
+            return CaseOutcome(caseID: planned.id, status: .skipped, message: "Bỏ qua theo yêu cầu (đang ở bước: \(currentStep.isEmpty ? "—" : currentStep)).",
+                               startedAt: started, endedAt: Date(), assertionsExecuted: 0)
+        case .timedOut:
+            let step = currentStep.isEmpty ? "—" : currentStep
+            emit(.log("\(planned.id) quá \(Int(budget))s, bị treo ở bước \(step) — dừng case này và chạy case kế.", level: .error))
+            if let shot = await captureEvidence(appium, caseID: planned.id, label: "timeout", config: config) {
+                emit(.evidence(caseID: planned.id, url: shot, kind: "screenshot"))
+            }
+            return CaseOutcome(caseID: planned.id, status: .blocked,
+                               message: "Quá thời gian \(Int(budget))s — bị treo ở bước: \(step). Case bị dừng để chạy tiếp các case sau.",
+                               startedAt: started, endedAt: Date(), assertionsExecuted: 0)
+        }
     }
 
     private func blocked(_ caseID: String, _ message: String) -> CaseOutcome {
@@ -165,6 +219,7 @@ final class TestExecutionService {
             try Task.checkCancellation()
             if skip.isSkipped(planned.id) { final = (.skipped, "Bỏ qua theo yêu cầu."); break }
             emit(.actionStarted(caseID: planned.id, action: action, index: index))
+            currentStep = "\(action.id) \(action.summary)"
             let stepStart = Date()
             var outcome: StepOutcome
             if index == 0, action.type == .relaunchApp, !path.isEmpty, (try? await navigator.softReset(path)) == true {
@@ -190,6 +245,10 @@ final class TestExecutionService {
             }
             if action.type.isAssertion && (outcome.status == .passed || outcome.status == .failed) { assertions += 1 }
             emit(.actionFinished(outcome))
+            if action.type.isAssertion, outcome.status == .passed,
+               let shot = await captureEvidence(appium, caseID: planned.id, label: "\(action.id)-pass", config: config) {
+                emit(.evidence(caseID: planned.id, url: shot, kind: "screenshot"))
+            }
 
             // After a fresh launch, walk the discovered route back to the screen under test.
             if outcome.status == .passed, !path.isEmpty, action.type == .relaunchApp || action.type == .launchApp {
@@ -230,7 +289,12 @@ final class TestExecutionService {
     }
 
     private func captureEvidence(_ appium: AppiumService, caseID: String, label: String, config: ExecutionConfig) async -> URL? {
-        guard let png = try? await appium.screenshot() else { return nil }
+        var capture: Data?
+        for attempt in 0..<3 where capture == nil {
+            capture = try? await appium.screenshot()
+            if capture == nil { try? await Task.sleep(nanoseconds: UInt64(300_000_000 * (attempt + 1))) }
+        }
+        guard let png = capture else { return nil }
         let url = config.evidenceDirectory.appendingPathComponent("\(caseID)-\(label).png")
         do { try png.write(to: url); return url } catch { return nil }
     }

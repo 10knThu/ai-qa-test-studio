@@ -172,15 +172,25 @@ final class NavigationAgent {
         return true
     }
 
-    /// Cheap reset between cases (no app restart): tapping a tab twice pops its navigation stack to the outermost screen,
-    /// then the rest of the known route is walked again. Returns false when that did not end on the screen under test,
-    /// and the caller falls back to restarting the app.
+    /// Cheap reset between cases (no app restart): select the route's tab, press Back until the next step of the route is
+    /// visible (= the outermost screen of that tab), then walk the rest of the route again so the screen is fresh
+    /// (default tab, no leftover state). Returns false when that did not end on the screen under test; the caller then
+    /// falls back to restarting the app.
     func softReset(_ path: [String]) async throws -> Bool {
         guard let first = path.first, let tab = try await findKey(first, timeout: 4) else { return false }
         try await appium.click(tab)
-        try await Task.sleep(nanoseconds: 500_000_000)
-        if let again = try await findKey(first, timeout: 2) { try await appium.click(again) }   // second tap = back to the root screen
-        try await Task.sleep(nanoseconds: 900_000_000)
+        try await Task.sleep(nanoseconds: 600_000_000)
+        guard path.count > 1 else { return try await isAtGoal() }
+
+        let next = path[1]
+        for _ in 0..<5 {
+            if try await findKey(next, timeout: 0.8) != nil { break }
+            var back = try await findKey("Back", timeout: 1.5)
+            if back == nil { back = try await appium.find(using: "-ios class chain", value: "**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[1]") }
+            guard let back else { return false }
+            try await appium.click(back)
+            try await Task.sleep(nanoseconds: 700_000_000)
+        }
         guard try await replay(Array(path.dropFirst())) else { return false }
         return try await isAtGoal()
     }

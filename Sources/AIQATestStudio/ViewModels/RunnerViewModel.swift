@@ -38,6 +38,8 @@ final class RunnerViewModel {
     /// Per case: how it was run (route + every action + outcome). Saved with the run and in the report.
     var flowNotes: [String: String] = [:]
     var stepResults: [String: [StepOutcome]] = [:]
+    /// Screenshots saved for each case while it ran (shown in the Test Runner so a Pass can be checked by eye).
+    var evidenceImages: [String: [URL]] = [:]
     var runCases: [PlannedCase] = []
 
     var isRunning = false
@@ -86,7 +88,7 @@ final class RunnerViewModel {
         navigationInfo = nil
         runCases = cases
         statuses = Dictionary(uniqueKeysWithValues: cases.map { ($0.id, ExecutionStatus.notRun) })
-        messages = [:]; durations = [:]; stepResults = [:]; caseRecords = [:]; flowNotes = [:]
+        messages = [:]; durations = [:]; stepResults = [:]; evidenceImages = [:]; caseRecords = [:]; flowNotes = [:]
         total = cases.count; completed = 0
         currentCaseID = nil; currentAction = nil; infrastructureProblem = nil
         focusedID = cases.first?.id
@@ -204,6 +206,7 @@ final class RunnerViewModel {
                 context.insert(step)
             }
         case .evidence(let caseID, let url, let kind):
+            if kind == "screenshot" { evidenceImages[caseID, default: []].append(url) }
             if let record = caseRecords[caseID] {
                 let evidence = EvidenceRecord(path: url.path, kind: kind)
                 evidence.caseRun = record

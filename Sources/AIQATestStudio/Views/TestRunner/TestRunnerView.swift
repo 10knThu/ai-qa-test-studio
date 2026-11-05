@@ -35,6 +35,9 @@ struct TestRunnerView: View {
                         Text("\(planned.id)  \(vi(planned.draft.title))").lineLimit(2).help(planned.draft.title)
                         HStack {
                             Text(status.title).font(.caption).foregroundStyle(status.color)
+                            if let count = runner.evidenceImages[planned.id]?.count, count > 0 {
+                                Label("\(count)", systemImage: "photo").font(.caption).foregroundStyle(.secondary)
+                            }
                             if let duration = runner.durations[planned.id] {
                                 Text(formatDuration(duration)).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
                             }
@@ -74,6 +77,7 @@ struct TestRunnerView: View {
                     }
                 }
                 if let planned { flowCard(planned, runner: runner) }
+                if let planned, let images = runner.evidenceImages[planned.id], !images.isEmpty { evidenceCard(images) }
                 if let planned, let note = runner.flowNotes[planned.id] {
                     Card(title: "Ghi chú luồng đã chạy") { Text(note).font(.caption.monospaced()).textSelection(.enabled) }
                 }
@@ -89,6 +93,26 @@ struct TestRunnerView: View {
                 }
             }
             .padding(16)
+        }
+    }
+
+    /// Screenshots taken for the case (after each passed check, and at the end). Click one to open it full size.
+    private func evidenceCard(_ images: [URL]) -> some View {
+        Card(title: "Ảnh evidence (\(images.count)) — bấm vào ảnh để mở") {
+            ScrollView(.horizontal) {
+                HStack(alignment: .top, spacing: 10) {
+                    ForEach(images, id: \.self) { url in
+                        VStack(spacing: 4) {
+                            if let image = NSImage(contentsOf: url) {
+                                Image(nsImage: image).resizable().scaledToFit().frame(height: 340)
+                                    .overlay(RoundedRectangle(cornerRadius: 6).stroke(.quaternary))
+                                    .onTapGesture { NSWorkspace.shared.open(url) }
+                            }
+                            Text(url.deletingPathExtension().lastPathComponent).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
+                        }
+                    }
+                }
+            }
         }
     }
 
