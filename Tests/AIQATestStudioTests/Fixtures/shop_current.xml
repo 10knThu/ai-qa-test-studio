@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AppiumAUT>
+  <XCUIElementTypeApplication type="XCUIElementTypeApplication" name="WAmazing AdHoc" label="WAmazing AdHoc" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="" processId="7854" bundleId="jp.wamazing.WAmazingiOSAdHoc">
+    <XCUIElementTypeWindow type="XCUIElementTypeWindow" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="">
+      <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="">
+        <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="">
+          <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="">
+            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="">
+              <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="">
+                <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="">
+                  <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="">
+                    <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="">
+                      <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="">
+                        <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits="">
+                          <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="62" width="402" height="727" index="0" traits=""/>
+                          <XCUIElementTypeButton type="XCUIElementTypeButton" name="Back" label="Back" enabled="true" visible="true" accessible="true" x="16" y="62" width="44" height="44" index="1" traits="Button">
+                            <XCUIElementTypeImage type="XCUIElementTypeImage" name="chevron.left" label="Back" enabled="true" visible="true" accessible="false" x="16" y="62" width="44" height="44" index="0" traits="Image"/>
+                          </XCUIElementTypeButton>
+                          <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Shop Order History" name="Shop Order History" label="Shop Order History" enabled="true" visible="true" accessible="true" x="16" y="114" width="251" height="38" index="2" traits="StaticText"/>
+                          <XCUIElementTypeButton type="XCUIElementTypeButton" name="View Shop" label="View Shop" enabled="true" visible="true" accessible="true" x="297" y="119" width="89" height="28" index="3" traits="Button"/>
+                          <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Current Orders" name="Current Orders" label="Current Orders" enabled="true" visible="true" accessible="true" x="71" y="188" width="103" height="18" index="4" traits="StaticText"/>
+                          <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Past Orders" name="Past Orders" label="Past Orders" enabled="true" visible="true" accessible="true" x="239" y="188" width="81" height="18" index="5" traits="StaticText"/>
+                          <XCUIElementTypeButton type="XCUIElementTypeButton" name="Orders for pickup in October or earlier can be viewed on the website " label="Orders for pickup in October or earlier can be viewed on the website " enabled="true" visible="true" accessible="true" x="16" y="226" width="370" height="46" index="6" traits="Button">
+                            <XCUIElementTypeImage type="XCUIElementTypeImage" name="info.circle.fill" label="Info" enabled="true" visible="true" accessible="false" x="26" y="239" width="19" height="20" index="0" traits="Image"/>
+                            <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Orders for pickup in October or earlier can be viewed on the website " name="Orders for pickup in October or earlier can be viewed on the website " label="Orders for pickup in October or earlier can be viewed on the website " enabled="true" visible="true" accessible="false" x="54" y="234" width="321" height="30" index="1" traits="StaticText"/>
+                          </XCUIElementTypeButton>
+                          <XCUIElementTypeCollectionView type="XCUIElementTypeCollectionView" enabled="true" visible="true" accessible="false" x="0" y="271" width="402" height="603" index="7" traits="">
+                            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" accessible="false" x="0" y="-935" width="402" height="2882" index="0" traits=""/>
+                            <XCUIElementTypeCell type="XCUIElementTypeCell" enabled="true" visible="true" accessible="false" x="0" y="271" width="402" height="181" index="1" traits="">
+                              <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" accessible="false" x="0" y="271" width="402" height="181" index="0" traits="">
+                                <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" accessible="false" x="0" y="271" width="402" height="181" index="0" traits=""/>
+                              </XCUIElementTypeOther>
+                              <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="271" width="402" height="181" index="1" traits="">
+                                <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="271" width="402" height="181" index="0" traits="">
+                                  <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="271" width="402" height="181" index="0" traits="">
+                                    <XCUIElementTypeButton type="XCUIElementTypeButton" name="Order Complete, SPT-01_対面_東京_全対応, Pickup time: 2026/11/13 10:00〜20:00&#10;Total quantity: 1&#10;Total amount: JPY7,684" label="Order Complete, SPT-01_対面_東京_全対応, Pickup time: 2026/11/13 10:00〜20:00&#10;Total quantity: 1&#10;Total amount: JPY7,684" enabled="true" visible="true" accessible="true" x="0" y="271" width="402" height="181" index="0" traits="Button">
+                                      <XCUIElementTypeImage type="XCUIElementTypeImage" enabled="true" visible="true" accessible="false" x="16" y="321" width="80" height="81" index="0" traits="Image"/>
+                                      <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Order Complete" name="Order Complete" label="Order Complete" enabled="true" visible="true" accessible="false" x="119" y="299" width="92" height="17" index="1" traits="StaticText"/>
+                                      <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="SPT-01_対面_東京_全対応" name="SPT-01_対面_東京_全対応" label="SPT-01_対面_東京_全対応" enabled="true" visible="true" accessible="false" x="111" y="323" width="205" height="23" index="2" traits="StaticText"/>
+                                      <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Pickup time: 2026/11/13 10:00〜20:00&#10;Total quantity: 1&#10;Total amount: JPY7,684" name="Pickup time: 2026/11/13 10:00〜20:00&#10;Total quantity: 1&#10;Total amount: JPY7,684" label="Pickup time: 2026/11/13 10:00〜20:00&#10;Total quantity: 1&#10;Total amount: JPY7,684" enabled="true" visible="true" accessible="false" x="111" y="350" width="196" height="78" index="3" traits="StaticText"/>
+                                      <XCUIElementTypeImage type="XCUIElementTypeImage" name="chevron.right" label="Forward" enabled="true" visible="true" accessible="false" x="376" y="354" width="10" height="16" index="4" traits="Image"/>
+                                    </XCUIElementTypeButton>
+                                  </XCUIElementTypeOther>
+                                </XCUIElementTypeOther>
+                              </XCUIElementTypeOther>
+                            </XCUIElementTypeCell>
+                            <XCUIElementTypeCell type="XCUIElementTypeCell" enabled="true" visible="true" accessible="false" x="0" y="452" width="402" height="181" index="2" traits="">
+                              <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" accessible="false" x="0" y="452" width="402" height="181" index="0" traits="">
+                                <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" accessible="false" x="0" y="452" width="402" height="181" index="0" traits=""/>
+                              </XCUIElementTypeOther>
+                              <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="452" width="402" height="181" index="1" traits="">
+                                <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="452" width="402" height="181" index="0" traits="">
+                                  <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="452" width="402" height="181" index="0" traits="">
+                                    <XCUIElementTypeButton type="XCUIElementTypeButton" name="Order Complete, Demo Locker Kyoto, Pickup time: 2026/11/10 10:00〜18:00&#10;Total quantity: 1&#10;Total amount: JPY7,180" label="Order Complete, Demo Locker Kyoto, Pickup time: 2026/11/10 10:00〜18:00&#10;Total quantity: 1&#10;Total amount: JPY7,180" enabled="true" visible="true" accessible="true" x="0" y="452" width="402" height="181" index="0" traits="Button">
+                                      <XCUIElementTypeImage type="XCUIElementTypeImage" enabled="true" visible="true" accessible="false" x="16" y="502" width="80" height="81" index="0" traits="Image"/>
+                                      <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Order Complete" name="Order Complete" label="Order Complete" enabled="true" visible="true" accessible="false" x="119" y="480" width="92" height="17" index="1" traits="StaticText"/>
+                                      <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Demo Locker Kyoto" name="Demo Locker Kyoto" label="Demo Locker Kyoto" enabled="true" visible="true" accessible="false" x="111" y="504" width="153" height="23" index="2" traits="StaticText"/>
+                                      <XCUIElementTypeStaticText type="XCUIElementTypeStaticText" value="Pickup time: 2026/11/10 10:00〜18:00&#10;Total quantity: 1&#10;Total amount: JPY7,180" name="Pickup time: 2026/11/10 10:00〜18:00&#10;Total quantity: 1&#10;Total amount: JPY7,180" label="Pickup time: 2026/11/10 10:00〜18:00&#10;Total quantity: 1&#10;Total amount: JPY7,180" enabled="true" visible="true" accessible="false" x="111" y="530" width="196" height="79" index="3" traits="StaticText"/>
+                                      <XCUIElementTypeImage type="XCUIElementTypeImage" name="chevron.right" label="Forward" enabled="true" visible="true" accessible="false" x="376" y="535" width="10" height="15" index="4" traits="Image"/>
+                                    </XCUIElementTypeButton>
+                                  </XCUIElementTypeOther>
+                                </XCUIElementTypeOther>
+                              </XCUIElementTypeOther>
+                            </XCUIElementTypeCell>
+                            <XCUIElementTypeCell type="XCUIElementTypeCell" enabled="true" visible="true" accessible="false" x="0" y="632" width="402" height="55" index="3" traits="">
+                              <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" accessible="false" x="0" y="632" width="402" height="55" index="0" traits="">
+                                <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" accessible="false" x="0" y="632" width="402" height="55" index="0" traits=""/>
+                              </XCUIElementTypeOther>
+                              <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="632" width="402" height="55" index="1" traits="">
+                                <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="632" width="402" height="55" index="0" traits="">
+                                  <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="632" width="402" height="55" index="0" traits="">
+                                    <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="true" x="0" y="632" width="402" height="55" index="0" traits=""/>
+                                  </XCUIElementTypeOther>
+                                </XCUIElementTypeOther>
+                              </XCUIElementTypeOther>
+                            </XCUIElementTypeCell>
+                            <XCUIElementTypeCell type="XCUIElementTypeCell" enabled="true" visible="true" accessible="false" x="0" y="686" width="402" height="55" index="4" traits="">
+                              <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="686" width="402" height="55" index="0" traits="">
+                                <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="686" width="402" height="55" index="0" traits=""/>
+                              </XCUIElementTypeOther>
+                              <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="686" width="402" height="55" index="1" traits="">
+                                <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="686" width="402" height="55" index="0" traits="">
+                                  <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="686" width="402" height="55" index="0" traits="">
+                                    <XCUIElementTypeActivityIndicator type="XCUIElementTypeActivityIndicator" value="1" enabled="true" visible="false" accessible="false" x="191" y="703" width="20" height="21" index="0" traits="UpdatesFrequently">
+                                      <XCUIElementTypeActivityIndicator type="XCUIElementTypeActivityIndicator" value="1" enabled="true" visible="true" accessible="false" x="191" y="703" width="20" height="21" index="0" traits="">
+                                        <XCUIElementTypeImage type="XCUIElementTypeImage" enabled="true" visible="true" accessible="false" x="191" y="703" width="20" height="21" index="0" traits="Image"/>
+                                      </XCUIElementTypeActivityIndicator>
+                                    </XCUIElementTypeActivityIndicator>
+                                  </XCUIElementTypeOther>
+                                </XCUIElementTypeOther>
+                              </XCUIElementTypeOther>
+                            </XCUIElementTypeCell>
+                          </XCUIElementTypeCollectionView>
+                        </XCUIElementTypeOther>
+                      </XCUIElementTypeOther>
+                    </XCUIElementTypeOther>
+                  </XCUIElementTypeOther>
+                  <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" accessible="false" x="0" y="0" width="402" height="874" index="1" traits="">
+                    <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="false" accessible="false" x="0" y="0" width="402" height="874" index="0" traits=""/>
+                  </XCUIElementTypeOther>
+                </XCUIElementTypeOther>
+              </XCUIElementTypeOther>
+            </XCUIElementTypeOther>
+            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="740" width="402" height="134" index="1" traits="">
+              <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="0" width="402" height="874" index="0" traits=""/>
+              <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="740" width="402" height="134" index="1" traits=""/>
+            </XCUIElementTypeOther>
+            <XCUIElementTypeOther type="XCUIElementTypeOther" enabled="true" visible="true" accessible="false" x="0" y="788" width="402" height="86" index="2" traits="TabBar">
+              <XCUIElementTypeButton type="XCUIElementTypeButton" enabled="true" visible="true" accessible="false" x="4" y="788" width="394" height="52" index="0" traits="">
+                <XCUIElementTypeButton type="XCUIElementTypeButton" name="Discover" label="Discover" enabled="true" visible="true" accessible="true" x="4" y="788" width="99" height="52" index="0" traits="Button"/>
+                <XCUIElementTypeButton type="XCUIElementTypeButton" name="Trips" label="Trips" enabled="true" visible="true" accessible="true" x="102" y="788" width="99" height="52" index="1" traits="Button"/>
+                <XCUIElementTypeButton type="XCUIElementTypeButton" name="Tax Free" label="Tax Free" enabled="true" visible="true" accessible="true" x="201" y="788" width="99" height="52" index="2" traits="Button"/>
+                <XCUIElementTypeButton type="XCUIElementTypeButton" value="1" name="Account" label="Account" enabled="true" visible="true" accessible="true" x="299" y="788" width="99" height="52" index="3" traits="Selected, Button"/>
+              </XCUIElementTypeButton>
+            </XCUIElementTypeOther>
+          </XCUIElementTypeOther>
+        </XCUIElementTypeOther>
+      </XCUIElementTypeOther>
+    </XCUIElementTypeWindow>
+  </XCUIElementTypeApplication>
+</AppiumAUT>
+
